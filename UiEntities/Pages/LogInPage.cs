@@ -6,11 +6,11 @@ namespace UiEntities.Pages
 {
     public class LogInPage : BasePage
     {
-        public UpWebElement Username => Driver.FindElement(By.Name("username"));
+        public UpWebElement Username => new UpWebElement(Driver, By.Name("username"));
 
-        public UpWebElement Password => Driver.FindElement(By.Name("password"));
+        public UpWebElement Password => new UpWebElement(Driver, By.Name("password"));
 
-        public UpWebElement LogInButton => Driver.FindElement(By.CssSelector(".loginbtn"));
+        public UpWebElement LogInButton => new UpWebElement(Driver, By.CssSelector(".loginbtn"));
 
 
         public override string pageUrl { get; set; } = "https://www.phptravels.net/login";
