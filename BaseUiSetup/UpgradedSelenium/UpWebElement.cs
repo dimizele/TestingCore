@@ -1,6 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Reflection;
+using log4net;
+using log4net.Config;
+using Logger;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Internal;
 
