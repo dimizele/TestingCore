@@ -8,18 +8,16 @@ namespace TestBase
     {
         public UpWebDriver Driver { get; set; }
 
-        [SetUp]
-        public override void SetUp()
+        public override void BeforeEach()
         {
+            base.BeforeEach();
             DriverInit();
-            BeforeEach();
         }
 
-        [TearDown]
-        public override void TearDown()
+        public override void AfterEach()
         {
-            AfterEach();
             DriverDispose();
+            base.AfterEach();
         }
 
         public void DriverInit()
