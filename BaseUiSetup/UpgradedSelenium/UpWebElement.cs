@@ -13,103 +13,117 @@ namespace BaseUiSetup.UpgradedSelenium
 {
     public class UpWebElement : IWrapsElement
     {
-        protected UpWebDriver upDriver;
-        protected IWebElement element;
-
+        public UpWebElement(UpWebDriver driver, By elementIdentifier)
+        {
+            UpDriver = driver;
+            WrappedElement = UpDriver.FindElement(elementIdentifier).WrappedElement;
+            ElementIdentifier = elementIdentifier;
+        }
 
         public UpWebElement(UpWebDriver driver, IWebElement element)
         {
-            this.upDriver = driver;
-            this.element = element;
+            UpDriver = driver;
+            WrappedElement = element;
         }
 
-        public UpWebElement(UpWebDriver driver, By elementLocator)
+        public UpWebElement(UpWebDriver driver, IWebElement element, By elementIdentifier)
         {
-            this.upDriver = driver;
-            this.element = upDriver.FindElement(elementLocator).element;
+            UpDriver = driver;
+            WrappedElement = element;
+            ElementIdentifier = elementIdentifier;
         }
 
-        public UpWebDriver UpDriver
+        public UpWebElement(UpWebDriver driver, UpWebElement element)
         {
-            get
-            {
-                return upDriver;
-            }
+            UpDriver = driver;
+            WrappedElement = element.WrappedElement;
+            ElementIdentifier = element.ElementIdentifier;
         }
 
-        public IWebElement WrappedElement
-        {
-            get { return element; }
-        }
+        public UpWebDriver UpDriver { get; }
+
+        public IWebElement WrappedElement { get; }
+
+        public By ElementIdentifier { get; }
 
         public UpWebElement FindElement(By by)
         {
-            upDriver.WaitForPageReady();
-            return new UpWebElement(upDriver, element.FindElement(by));
+            UpDriver.WaitForPageReady();
+            Log.GetLogger().Info($"Finding element by locator:[{by}]");
+            return new UpWebElement(UpDriver, WrappedElement.FindElement(by), by);
         }
 
         public ReadOnlyCollection<UpWebElement> FindElements(By by)
         {
-            upDriver.WaitForPageReady();
-            return new ReadOnlyCollection<UpWebElement>(element.FindElements(by).Select(el => new UpWebElement(upDriver, el)).ToList());
+            UpDriver.WaitForPageReady();
+            Log.GetLogger().Info($"Finding elements by locator:[{by}]");
+            return new ReadOnlyCollection<UpWebElement>(WrappedElement.FindElements(by).Select(el => new UpWebElement(UpDriver, el, by)).ToList());
         }
 
         public UpWebElement Clear()
         {
-            upDriver.WaitForPageReady();
-            element.Clear();
+            UpDriver.WaitForPageReady();
+            Log.GetLogger().Info($"Clearing element [{ElementIdentifier}]");
+            WrappedElement.Clear();
 
             return this;
         }
 
         public UpWebElement SendKeys(string text)
         {
-            upDriver.WaitForPageReady();
-            element.SendKeys(text);
+            UpDriver.WaitForPageReady();
+            Log.GetLogger().Info($"Sending [{text}] to element [{ElementIdentifier}]");
+            WrappedElement.SendKeys(text);
 
             return this;
         }
 
         public UpWebElement Submit()
         {
-            upDriver.WaitForPageReady();
-            element.Submit();
+            UpDriver.WaitForPageReady();
+            Log.GetLogger().Info($"Submitting element [{ElementIdentifier}]");
+            WrappedElement.Submit();
 
             return this;
         }
 
         public UpWebElement Click()
         {
-            upDriver.WaitForPageReady();
-            element.Click();
+            UpDriver.WaitForPageReady();
+            Log.GetLogger().Info($"Clicking element [{ElementIdentifier}]");
+            WrappedElement.Click();
 
             return this;
         }
 
         public string GetAttribute(string attributeName)
         {
-            upDriver.WaitForPageReady();
-            return element.GetAttribute(attributeName);
+            UpDriver.WaitForPageReady();
+            Log.GetLogger().Info($"Getting [{attributeName}] attribute for element [{ElementIdentifier}]");
+            return WrappedElement.GetAttribute(attributeName);
         }
 
         public string GetProperty(string propertyName)
         {
-            upDriver.WaitForPageReady();
-            return element.GetProperty(propertyName);
+            UpDriver.WaitForPageReady();
+            Log.GetLogger().Info($"Getting [{propertyName}] property for element [{ElementIdentifier}]");
+            return WrappedElement.GetProperty(propertyName);
         }
 
-        public string GetCssValue(string propertyName)
+        public string GetCssValue(string cssValue)
         {
-            upDriver.WaitForPageReady();
-            return element.GetCssValue(propertyName);
+            UpDriver.WaitForPageReady();
+            Log.GetLogger().Info($"Getting [{cssValue}] CssValue for element [{ElementIdentifier}]");
+            return WrappedElement.GetCssValue(cssValue);
         }
 
         public string TagName
         {
             get
             {
-                upDriver.WaitForPageReady();
-                return element.TagName;
+                UpDriver.WaitForPageReady();
+                Log.GetLogger().Info($"Getting element [{ElementIdentifier}] TagName Property");
+                return WrappedElement.TagName;
             }
         }
 
@@ -117,8 +131,9 @@ namespace BaseUiSetup.UpgradedSelenium
         {
             get
             {
-                upDriver.WaitForPageReady();
-                return element.Text;
+                UpDriver.WaitForPageReady();
+                Log.GetLogger().Info($"Getting element [{ElementIdentifier}] Text Property");
+                return WrappedElement.Text;
             }
         }
 
@@ -126,8 +141,9 @@ namespace BaseUiSetup.UpgradedSelenium
         {
             get
             {
-                upDriver.WaitForPageReady();
-                return element.Enabled;
+                UpDriver.WaitForPageReady();
+                Log.GetLogger().Info($"Getting element [{ElementIdentifier}] Enabled Property");
+                return WrappedElement.Enabled;
             }
         }
 
@@ -135,8 +151,9 @@ namespace BaseUiSetup.UpgradedSelenium
         {
             get
             {
-                upDriver.WaitForPageReady();
-                return element.Selected;
+                UpDriver.WaitForPageReady();
+                Log.GetLogger().Info($"Getting element [{ElementIdentifier}] Selected Property");
+                return WrappedElement.Selected;
             }
         }
 
@@ -144,8 +161,9 @@ namespace BaseUiSetup.UpgradedSelenium
         {
             get
             {
-                upDriver.WaitForPageReady();
-                return element.Location;
+                UpDriver.WaitForPageReady();
+                Log.GetLogger().Info($"Getting element [{ElementIdentifier}] Location Property");
+                return WrappedElement.Location;
             }
         }
 
@@ -153,8 +171,9 @@ namespace BaseUiSetup.UpgradedSelenium
         {
             get
             {
-                upDriver.WaitForPageReady();
-                return element.Size;
+                UpDriver.WaitForPageReady();
+                Log.GetLogger().Info($"Getting element [{ElementIdentifier}] Size Property");
+                return WrappedElement.Size;
             }
         }
 
@@ -162,8 +181,9 @@ namespace BaseUiSetup.UpgradedSelenium
         {
             get
             {
-                upDriver.WaitForPageReady();
-                return element.Displayed;
+                UpDriver.WaitForPageReady();
+                Log.GetLogger().Info($"Getting element [{ElementIdentifier}] Displayed Property");
+                return WrappedElement.Displayed;
             }
         }
     }

@@ -3,6 +3,7 @@ using OpenQA.Selenium.Internal;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
+using Logger;
 
 namespace BaseUiSetup.UpgradedSelenium
 {
@@ -91,13 +92,15 @@ namespace BaseUiSetup.UpgradedSelenium
         public UpWebElement FindElement(By by)
         {
             WaitForPageReady();
-            return new UpWebElement(this, driver.FindElement(by));
+            Log.GetLogger().Info($"Finding element by locator:[{by}]");
+            return new UpWebElement(this, driver.FindElement(by), by);
         }
 
         public ReadOnlyCollection<UpWebElement> FindElements(By by)
         {
             WaitForPageReady();
-            return new ReadOnlyCollection<UpWebElement>(driver.FindElements(by).Select(el => new UpWebElement(this, el)).ToList());
+            Log.GetLogger().Info($"Finding elements by locator:[{by}]");
+            return new ReadOnlyCollection<UpWebElement>(driver.FindElements(by).Select(el => new UpWebElement(this, el, by)).ToList());
         }
 
         public IOptions Manage()
