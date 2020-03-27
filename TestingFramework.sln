@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaseUiSetup", "BaseUiSetup\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SupportClasses", "SupportClasses\SupportClasses.csproj", "{40BDA922-3B47-48E7-997B-A43290E44D8A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UiEntities", "UiEntities\UiEntities.csproj", "{959DE41E-6EFA-44D2-B8FA-2585881B4B1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FrontEndEntities", "UiEntities\FrontEndEntities.csproj", "{959DE41E-6EFA-44D2-B8FA-2585881B4B1B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestBase", "TestBase\TestBase.csproj", "{9CEB36E6-E9A9-41FD-B7CD-C4D81A5763D5}"
 EndProject
@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackendTests", "BackendTest
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FrontendTests", "FrontendTests\FrontendTests.csproj", "{88126823-1577-402F-AB4F-1AAEB08F6EF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger", "Logger\Logger.csproj", "{31C8C95E-D0F3-4A03-942B-42C0E87CE711}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logger", "Logger\Logger.csproj", "{31C8C95E-D0F3-4A03-942B-42C0E87CE711}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackEndEntities", "BackEndEntities\BackEndEntities.csproj", "{AF509F9D-C579-426B-8BAF-EBA1BE7F4F46}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,11 +55,16 @@ Global
 		{31C8C95E-D0F3-4A03-942B-42C0E87CE711}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31C8C95E-D0F3-4A03-942B-42C0E87CE711}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31C8C95E-D0F3-4A03-942B-42C0E87CE711}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF509F9D-C579-426B-8BAF-EBA1BE7F4F46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF509F9D-C579-426B-8BAF-EBA1BE7F4F46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF509F9D-C579-426B-8BAF-EBA1BE7F4F46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF509F9D-C579-426B-8BAF-EBA1BE7F4F46}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{9CEB36E6-E9A9-41FD-B7CD-C4D81A5763D5} = {22815329-A753-452B-893B-E5C6EE3452B2}
 		{54FF53DE-2DF1-43BC-B0BE-C7CB0CCA5707} = {22815329-A753-452B-893B-E5C6EE3452B2}
 		{88126823-1577-402F-AB4F-1AAEB08F6EF4} = {22815329-A753-452B-893B-E5C6EE3452B2}
 	EndGlobalSection
